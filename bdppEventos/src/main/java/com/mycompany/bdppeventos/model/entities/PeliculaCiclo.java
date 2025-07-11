@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
@@ -14,43 +15,43 @@ import java.util.List;
  * Una película puede tener múltiples proyecciones
  */
 @Entity
-@Table(name = "peliculas")
-public class Pelicula {
+@Table(name = "pelicula_ciclo")
+public class PeliculaCiclo {
 
     @Id
     @Column(name = "id_pelicula", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPelicula;
 
-    @Column(name = "titulo", length = 100, nullable = false)
+    @Column(name = "titulo_pelicula", length = 100, nullable = false)
     private String titulo;
 
     @Column(name = "activo", nullable = false)
     private boolean activo;
 
-    // Relación uno a muchos con Proyeccion
-    @OneToMany(mappedBy = "pelicula")
-    private List<Proyeccion> proyecciones;
+    @Column(name = "orden_proyeccion", nullable = false)
+    private int ordenProyeccion;
 
-    // Constructores
+    @Column(name = "duracion_minutos", nullable = false)
+    private int duracionMinutos;
 
-    public Pelicula() {
+    @Column(name = "director", length = 500, nullable = true)
+    private String director;
+
+    // Relación uno a muchos con CicloCine
+    // @ManyToOne
+    // @JoinColumn(name = "id_ciclo_cine", nullable = false)
+    // private CicloCine idCicloCine;
+
+    public PeliculaCiclo() {
         this.activo = true; // Por defecto activo
     }
 
     // Constructor para crear una película nueva sin proyecciones
-    public Pelicula(int idPelicula, String titulo, boolean activo) {
+    public PeliculaCiclo(int idPelicula, String titulo, boolean activo) {
         this.idPelicula = idPelicula;
         this.titulo = titulo;
         this.activo = activo;
-    }
-
-    // Constructor completo para crear una película con proyecciones
-    public Pelicula(int idPelicula, String titulo, boolean activo, List<Proyeccion> proyecciones) {
-        this.idPelicula = idPelicula;
-        this.titulo = titulo;
-        this.activo = activo;
-        this.proyecciones = proyecciones;
     }
 
     // Getters y Setters
@@ -77,14 +78,6 @@ public class Pelicula {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
-    }
-
-    public List<Proyeccion> getProyecciones() {
-        return proyecciones;
-    }
-
-    public void setProyecciones(List<Proyeccion> proyecciones) {
-        this.proyecciones = proyecciones;
     }
 
 }

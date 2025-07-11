@@ -1,5 +1,7 @@
 package com.mycompany.bdppeventos.model.entities;
 
+import java.time.LocalDate;
+
 import com.mycompany.bdppeventos.model.interfaces.Activable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,44 +13,54 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "participaciones")
-public class Participacion implements Activable {
+@Table(name = "inscripciones")
+public class Inscripcion implements Activable {
 
     @Id
-    @Column(name = "id_participacion", nullable = false)
+    @Column(name = "id_inscripcion", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idParticipacion;
+    private int idInscripcion;
 
-    @Column(name = "activo")
-    private boolean activo;
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
 
+    @Column(name = "fecha_inscripcion", nullable = false)
+    private LocalDate fechaInscripcion;
+
+    @Column(name = "asistio", nullable = false)
+    private boolean asistio;
+
+    // Relaciones
+
+    // Relacion muchos a uno con Persona
     @ManyToOne
     @JoinColumn(name = "dni_persona")
     private Persona unaPersona;
 
+    // Relacion muchos a uno con Evento
     @ManyToOne
     @JoinColumn(name = "id_evento")
     private Evento unEvento;
 
+    // Relacion muchos a uno con TipoRol
     @ManyToOne
     @JoinColumn(name = "tipo_rol_id")
     private TipoRol unTipoRol;
 
     // Constructores
-    public Participacion() {
+    public Inscripcion() {
     }
 
-    public Participacion(int idParticipacion, boolean activo, Persona unaPersona, Evento unEvento, TipoRol unTipoRol) {
-        this.idParticipacion = idParticipacion;
-        this.activo = activo;
+    public Inscripcion(int idInscripcion, Persona unaPersona, Evento unEvento, TipoRol unTipoRol) {
+        this.idInscripcion = idInscripcion;
         this.unaPersona = unaPersona;
         this.unEvento = unEvento;
         this.unTipoRol = unTipoRol;
     }
 
     // Getters and Setters
-    public int getIdParticipacion() {
-        return idParticipacion;
+    public int getIdInscripcion() {
+        return idInscripcion;
     }
 
     public Persona getUnaPersona() {
@@ -73,41 +85,37 @@ public class Participacion implements Activable {
         this.unTipoRol = unTipoRol;
     }
 
-    
-    //TODO: Falta validaciones 
+    // TODO: Falta validaciones
     public Evento getUnEvento() {
         return unEvento;
     }
 
     public void setUnEvento(Evento unEvento) {
-        this.unEvento = unEvento;
+        // Metodos Interfaz Activable
+
     }
 
-    
-    
-    // Metodos Interfaz Activable
     @Override
     public void activar() {
-        this.activo = ACTIVO;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'activar'");
     }
 
     @Override
     public void desactivar() {
-        this.activo = INACTIVO;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'desactivar'");
     }
 
     @Override
     public Boolean getActivo() {
-        return activo;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getActivo'");
     }
 
     @Override
     public void setActivo(Boolean activo) {
-        // Activo no puede ser null
-        if (activo == null) {
-            throw new IllegalArgumentException("Estado activo no puede ser nulo");
-        }
-        this.activo = activo;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setActivo'");
     }
-
 }

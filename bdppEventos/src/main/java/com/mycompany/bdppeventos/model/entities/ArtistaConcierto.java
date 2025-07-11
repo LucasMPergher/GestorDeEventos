@@ -1,34 +1,32 @@
 package com.mycompany.bdppeventos.model.entities;
 
-import com.mycompany.bdppeventos.model.enums.TipoEntrada;
+import com.mycompany.bdppeventos.model.interfaces.Activable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 
-/**
- * Entidad que representa un Concierto como especialización de Evento
- * Un concierto es un evento musical que puede tener entrada gratuita o paga
- */
 @Entity
-@Table(name = "conciertos")
-public class Concierto extends Evento {
+@Table(name = "artistas_concierto")
+// La clase ArtistaConcierto representa a un artista que participa en un
+// concierto.
+public class ArtistaConcierto implements Activable {
 
-    @Enumerated(EnumType.STRING) // Se usa STRING para almacenar el nombre del enum en la base de datos
-    @Column(name = "tipo_entrada", nullable = false, length = 20) // length debe ser suficiente para el nombre del enum
-    private TipoEntrada tipoEntrada;
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-    // Constructores
+    @Column(name = "orden_actuacion", nullable = false)
+    private Integer ordenActuacion;
 
-    public Concierto() {
-        super();
+    // constructor
+    public ArtistaConcierto() {
     }
 
-    public Concierto(String nombre, LocalDate fechaInicio, int duracionEstimada, TipoEntrada tipoEntrada) {
-        super();
-        this.tipoEntrada = tipoEntrada;
+    // Constructor con parámetros
+    public ArtistaConcierto(Long id, Integer ordenActuacion) {
+        this.id = id;
+        this.ordenActuacion = ordenActuacion;
     }
 
     @Override

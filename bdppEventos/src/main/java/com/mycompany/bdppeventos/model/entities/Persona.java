@@ -5,7 +5,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
 import java.util.List;
 
 @Entity
@@ -17,7 +19,7 @@ public class Persona implements Activable {
     @Column(name = "dni", length = 10, nullable = false)
     private String dni;
 
-    // Atributos Simples    
+    // Atributos Simples
     @Column(name = "nombre", length = 35, nullable = false)
     private String nombre;
 
@@ -30,31 +32,37 @@ public class Persona implements Activable {
     @Column(name = "correo_electronico", length = 50, nullable = true)
     private String correoElectronico;
 
-    @OneToMany(mappedBy = "unaPersona")    
-    private List<Participacion> unaListaParticipacion;
-    
-    
-    // Variable que verifica si la Persona esta en baja o esta activa
-    @Column(name = "activo")
-    private Boolean activo;
+    @OneToMany(mappedBy = "unaPersona")
+    private List<Inscripcion> unaListaParticipacion;
 
-    // Constructores 
+    // Relación uno a muchos con Inscripcion - Una persona puede tener múltiples
+    // inscripciones
+    @OneToMany(mappedBy = "unaPersona")
+    private List<Inscripcion> unaListaInscripciones;
+
+    // relacion con ResponsableEvento
+    @OneToMany(mappedBy = "responsable")
+    private List<ResponsableEvento> unaListaResponsables;
+
+    // Relación 1 a 1 con Persona
+    @OneToOne(mappedBy = "persona")
+    private Taller taller;
+
+    // Constructores
     public Persona() {
-
-        // Al crear una nueva instancia siempre va a estar activo (Hasta que se de la baja)
-        this.activo = true;
     }
 
-    public Persona(String dni, String nombre, String apellido, String telefono, String correoElectronico, List<Participacion> unaListaParticipacion, Boolean activo) {
+    public Persona(String dni, String nombre, String apellido, String telefono, String correoElectronico,
+            List<Inscripcion> unaListaParticipacion, List<Inscripcion> unaListaInscripciones, Boolean activo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
         this.unaListaParticipacion = unaListaParticipacion;
-        this.activo = activo;
+        this.unaListaInscripciones = unaListaInscripciones;
     }
-    
+
     // Getters y Setters
     public String getDni() {
         return dni;
@@ -113,13 +121,14 @@ public class Persona implements Activable {
             if (telefonoLimpio.length() > 15) {
                 throw new IllegalArgumentException("Teléfono no puede exceder 15 caracteres");
             }
-            //validar formato (solo números, espacios, guiones)
+            // validar formato (solo números, espacios, guiones)
             if (!telefonoLimpio.matches("[0-9 \\-+()]+")) {
-                throw new IllegalArgumentException("Teléfono solo puede tener números, espacios, guiones, + y paréntesis");
+                throw new IllegalArgumentException(
+                        "Teléfono solo puede tener números, espacios, guiones, + y paréntesis");
             }
             this.telefono = telefonoLimpio;
         } else {
-            this.telefono = null;  // Si viene vacío, guardar como null
+            this.telefono = null; // Si viene vacío, guardar como null
         }
     }
 
@@ -139,13 +148,8 @@ public class Persona implements Activable {
             }
             this.correoElectronico = emailLimpio;
         } else {
-            this.correoElectronico = null;  // Si viene vacío, guardar como null
+            this.correoElectronico = null; // Si viene vacío, guardar como null
         }
-    }
-
-    @Override
-    public Boolean getActivo() {
-        return activo;
     }
 
     @Override
@@ -154,19 +158,25 @@ public class Persona implements Activable {
         if (activo == null) {
             throw new IllegalArgumentException("Estado activo no puede ser nulo");
         }
-        this.activo = activo;
     }
 
-    public List<Participacion> getUnaListaParticipacion() {
+    public List<Inscripcion> getUnaListaParticipacion() {
         return unaListaParticipacion;
     }
 
-    public void setUnaListaParticipacion(List<Participacion> unaListaParticipacion) {
+    public void setUnaListaParticipacion(List<Inscripcion> unaListaParticipacion) {
         this.unaListaParticipacion = unaListaParticipacion;
     }
 
-    
-    
+    // Getter y Setter para la lista de inscripciones
+    public List<Inscripcion> getUnaListaInscripciones() {
+        return unaListaInscripciones;
+    }
+
+    public void setUnaListaInscripciones(List<Inscripcion> unaListaInscripciones) {
+        this.unaListaInscripciones = unaListaInscripciones;
+    }
+
     // Metodos Específicos
     private boolean esEmailValido(String email) {
 
@@ -192,23 +202,32 @@ public class Persona implements Activable {
     }
 
     @Override
-    public void activar() {
-        this.activo = ACTIVO;
-    }
-
-    @Override
-    public void desactivar() {
-        this.activo = INACTIVO;
-    }
-
-    @Override
     public String toString() {
-        return "Persona{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", correoElectronico=" + correoElectronico + ", activo=" + activo + '}';
+        return "Persona{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
+                + ", correoElectronico=" + correoElectronico + '}';
     }
 
     // Informacion que hay que cargar en los listBox
     public String getInformacionPersonal() {
         return this.apellido + " " + this.nombre + "|DNI: " + this.dni;
+    }
+
+    @Override
+    public void activar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'activar'");
+    }
+
+    @Override
+    public void desactivar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'desactivar'");
+    }
+
+    @Override
+    public Boolean getActivo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getActivo'");
     }
 
 }

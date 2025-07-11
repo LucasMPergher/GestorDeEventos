@@ -20,9 +20,9 @@ public class CicloDeCine extends Evento {
     @Column(name = "charlas_posteriores", nullable = false)
     private boolean charlasPosteriores;
 
-    // Relación uno a muchos con Proyeccion
+    // Relación uno a muchos con PeliculaCiclo
     @OneToMany(mappedBy = "cicloDeCine")
-    private List<Proyeccion> proyecciones;
+    private List<PeliculaCiclo> peliculas;
 
     // Constructor por defecto
     public CicloDeCine() {
@@ -31,20 +31,18 @@ public class CicloDeCine extends Evento {
 
     // Constructor completo para crear ciclos de cine existentes
 
-    public CicloDeCine(boolean charlasPosteriores, List<Proyeccion> proyecciones) {
+    public CicloDeCine(boolean charlasPosteriores) {
         this.charlasPosteriores = charlasPosteriores;
-        this.proyecciones = proyecciones;
+
     }
 
-    public CicloDeCine(boolean charlasPosteriores, List<Proyeccion> proyecciones, int idEvento, String nombre, LocalDate fechaInicio, int duracionEstimada, boolean tieneCupo, int capacidadMaxima, boolean tieneInscripcion, String ubicacion, EstadoEvento unEstadoEvento, boolean esPago, double montoInscripcion, boolean activo, List<Participacion> unaListaParticipacion) {
-        super(idEvento, nombre, fechaInicio, duracionEstimada, tieneCupo, capacidadMaxima, tieneInscripcion, ubicacion, unEstadoEvento, esPago, montoInscripcion, activo, unaListaParticipacion);
+    public CicloDeCine(String nombre, LocalDate fechaInicio, int duracionEstimada, EstadoEvento estado,
+            boolean requiereInscripcion, int cupoMaximo, boolean esAbierto, boolean charlasPosteriores) {
+        super(nombre, fechaInicio, duracionEstimada, estado, null, requiereInscripcion, cupoMaximo, esAbierto);
         this.charlasPosteriores = charlasPosteriores;
-        this.proyecciones = proyecciones;
     }
-    
-    
+
     // Constructor simplificado para crear ciclos de cine nuevos
-    
 
     // Getters y Setters
     public boolean isCharlasPosteriores() {
@@ -55,11 +53,27 @@ public class CicloDeCine extends Evento {
         this.charlasPosteriores = charlasPosteriores;
     }
 
-    public List<Proyeccion> getProyecciones() {
-        return proyecciones;
+    @Override
+    public void activar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'activar'");
     }
 
-    public void setProyecciones(List<Proyeccion> proyecciones) {
-        this.proyecciones = proyecciones;
+    @Override
+    public void desactivar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'desactivar'");
+    }
+
+    @Override
+    public Boolean getActivo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getActivo'");
+    }
+
+    @Override
+    public void setActivo(Boolean activo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setActivo'");
     }
 }
