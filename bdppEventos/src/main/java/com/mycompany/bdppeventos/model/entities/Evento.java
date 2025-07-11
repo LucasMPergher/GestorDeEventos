@@ -48,24 +48,6 @@ public abstract class Evento implements Activable {
     @Column(name = "es_abierto", nullable = false)
     private boolean esAbierto;
 
-    // @Column(name = "tiene_cupo", nullable = false)
-    // private boolean tieneCupo;
-
-    // @Column(name = "capacidad_maxima", nullable = false)
-    // private int capacidadMaxima;
-
-    // @Column(name = "ubicacion", length = 35, nullable = false)
-    // private String ubicacion;
-
-    // @Column(name = "es_pago", nullable = false)
-    // private boolean esPago;
-
-    // @Column(name = "monto", nullable = false)
-    // private double monto;
-
-    // @Column(name = "activo", nullable = false)
-    // private boolean activo = true;
-
     // Relacion uno muchos evento con inscripcion
     @OneToMany(mappedBy = "evento")
     private List<Inscripcion> unaListaInscripcion;

@@ -105,7 +105,7 @@ public abstract class CrudServicio<T> {
 
     public abstract void validarYBorrar(T entidad);
 
-    protected abstract boolean esInactivo(T entidad);
+    protected abstract boolean esInactivo(T entidad); // Método para verificar si una entidad está inactiva
 
-    protected abstract void marcarComoInactivo(T entidad);
+    protected abstract void marcarComoInactivo(T entidad); // Método para marcar una entidad como inactiva
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.mycompany.bdppeventos.model.entities.Evento;
+import com.mycompany.bdppeventos.model.entities.Feria;
 import com.mycompany.bdppeventos.model.enums.EstadoEvento;
 import com.mycompany.bdppeventos.repository.Repositorio;
 import com.mycompany.bdppeventos.services.CrudServicio;
@@ -19,7 +20,7 @@ public class EventoServicio extends CrudServicio<Evento> {
 
     @Override
     public Evento validarEInsertar(Object... datos) {
-        if (datos.length != 6) {
+        if (datos.length != 10) {
             throw new IllegalArgumentException("Número incorrecto de parámetros.");
         }
 
@@ -27,20 +28,35 @@ public class EventoServicio extends CrudServicio<Evento> {
         LocalDate fechaInicio = (LocalDate) datos[1];
         int duracionEstimada = (int) datos[2];
         boolean tieneCupo = (boolean) datos[3];
-        int capacidadMaxima = (int) datos[4];
-        boolean tieneInscripcion = (boolean) datos[5];
-        String ubicacion = (String) datos[6];
         EstadoEvento estado = (EstadoEvento) datos[7];
-        boolean esPago = (boolean) datos[8];
-        Double monto = (Double) datos[9];
+        String tipoEvento = (String) datos[4];
+        boolean requiereInscripcion = (boolean) datos[5];
+        int cupoMaximo = (int) datos[6];
+        boolean esAbierto = (boolean) datos[8];
+
+        int cantidadStands = (int) datos[9];
+        boolean esAireLibre = (boolean) datos[10];
 
         List<String> errores = new ArrayList<>();
 
-        Evento evento = new Evento();
+        Evento evento = null;
 
         try {
-            evento = new Evento(nombre, fechaInicio, duracionEstimada, tieneCupo,
-                    capacidadMaxima, tieneInscripcion, ubicacion, estado, esPago, monto);
+            // Crear el tipo específico de evento según tipoEvento
+            switch (tipoEvento.toLowerCase()) {
+                case "feria":
+                    evento = new Feria(nombre, fechaInicio, duracionEstimada, tieneCupo,
+                            estado, requiereInscripcion, cupoMaximo, esAbierto, cantidadStands,
+                            esAireLibre);
+                    break;
+                // case "tipo2":
+                // evento = new Tipo2Evento(nombre, fechaInicio, duracionEstimada, tieneCupo,
+                // estado,
+                // requiereInscripcion, cupoMaximo, esAbierto);
+                // break;
+                default:
+                    throw new IllegalArgumentException("Tipo de evento desconocido: " + tipoEvento);
+            }
         } catch (IllegalArgumentException e) {
             errores.add(e.getMessage());
         }
@@ -54,167 +70,178 @@ public class EventoServicio extends CrudServicio<Evento> {
     }
 
     @Override
-    public void validarYModificar(Libro libro, Object... datos) {
-        if (datos.length != 5) {
+    public void validarYModificar(Evento evento, Object... datos) {
+        if (datos.length != 9) {
             throw new IllegalArgumentException("Número incorrecto de parámetros.");
         }
 
-        String titulo = (String) datos[0];
-        Categoria categoria = (Categoria) datos[1];
-        Editorial editorial = (Editorial) datos[2];
-        Idioma idioma = (Idioma) datos[3];
-        @SuppressWarnings("unchecked")
-        Set<Autor> autores = (Set<Autor>) datos[4];
-        Libro aux = new Libro();
+        String nombre = (String) datos[0];
+        LocalDate fechaInicio = (LocalDate) datos[1];
+        int duracionEstimada = (int) datos[2];
+        boolean tieneCupo = (boolean) datos[3];
+        EstadoEvento estado = (EstadoEvento) datos[7];
+        String tipoEvento = (String) datos[4];
+        boolean requiereInscripcion = (boolean) datos[5];
+        int cupoMaximo = (int) datos[6];
+        boolean esAbierto = (boolean) datos[8];
 
         List<String> errores = new ArrayList<>();
 
-        // Validamos si el miembro o la copia seleccionados existen
-        if (categoria != null) {
-            if (!servicioCategoria.existe(categoria, categoria.getId())) {
-                errores.add("La categoría seleccionada no se encuentra en la base de datos.");
-            }
-        }
-
-        if (editorial != null) {
-            if (!servicioEditorial.existe(editorial, editorial.getId())) {
-                errores.add("La editorial seleccionada no se encuentra en la base de datos.");
-            }
-        }
-
-        if (idioma != null) {
-            if (!servicioIdioma.existe(idioma, idioma.getId())) {
-                errores.add("El idioma seleccionado no se encuentra en la base de datos.");
-            }
-        }
-
-        for (Autor autor : autores) {
-            if (autor != null) {
-                if (!servicioAutor.existe(autor, autor.getId())) {
-                    errores.add("El autor " + autor + " no se encuentra en la base de datos.");
-                }
-            }
-
-        }
-
         try {
-            aux.setTitulo(titulo);
+            evento.setNombre(nombre);
         } catch (IllegalArgumentException e) {
             errores.add(e.getMessage());
         }
 
         try {
-            aux.setCategoria(categoria);
+            evento.setFechaInicio(fechaInicio);
         } catch (IllegalArgumentException e) {
             errores.add(e.getMessage());
         }
 
         try {
-            aux.setEditorial(editorial);
+            evento.setDuracionEstimada(duracionEstimada);
         } catch (IllegalArgumentException e) {
             errores.add(e.getMessage());
         }
 
+        // try {
+        // evento.setTieneCupo(tieneCupo);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
+
+        // try {
+        // evento.setCapacidadMaxima(capacidadMaxima);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
+
+        // try {
+        // evento.setTieneInscripcion(tieneInscripcion);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
+
+        // try {
+        // evento.setUbicacion(ubicacion);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
+
         try {
-            aux.setIdioma(idioma);
+            evento.setEstado(estado);
         } catch (IllegalArgumentException e) {
             errores.add(e.getMessage());
         }
 
-        try {
-            aux.setAutores(autores);
-        } catch (IllegalArgumentException e) {
-            errores.add(e.getMessage());
-        }
+        // try {
+        // evento.setEsPago(esPago);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
+
+        // try {
+        // evento.setMonto(monto);
+        // } catch (IllegalArgumentException e) {
+        // errores.add(e.getMessage());
+        // }
 
         if (!errores.isEmpty()) {
             throw new IllegalArgumentException(String.join("\n", errores));
         }
 
-        agregarLibroAEntidades(libro, autores, categoria, editorial, idioma);
-        libro.setTitulo(titulo);
-        libro.setCategoria(categoria);
-        libro.setEditorial(editorial);
-        libro.setIdioma(idioma);
-        libro.setAutores(autores);
-        modificar(libro);
+        modificar(evento);
     }
 
     @Override
-    public void validarYBorrar(Libro libro) {
-
-        for (CopiaLibro copia : libro.getCopias()) {
-            if (!copia.isBaja()) {
-                throw new IllegalArgumentException("No se puede eliminar el libro porque tiene copias asociadas.");
-            }
-        }
-
-        borrar(libro);
+    public void validarYBorrar(Evento evento) {
+        // Implementa aquí la lógica de validación antes de borrar un evento, si es
+        // necesario
+        borrar(evento);
     }
 
     @Override
-    protected boolean esInactivo(Libro libro) {
-        return libro.isBaja();
+    protected boolean esInactivo(Evento entidad) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'esInactivo'");
     }
 
     @Override
-    protected void marcarComoInactivo(Libro libro) {
-        libro.setBaja();
+    protected void marcarComoInactivo(Evento entidad) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'marcarComoInactivo'");
     }
 
-    public String verificarCopias(Libro libro) {
-        List<CopiaLibro> copias = new ArrayList<>(libro.getCopias());
+    // @Override
+    // protected boolean esInactivo(Evento evento) {
+    // // Suponiendo que Evento tiene un método isInactivo o similar
+    // return evento.isInactivo();
+    // }
 
-        if (copias.isEmpty()) {
-            throw new IllegalArgumentException("El libro seleccionado no tiene ninguna copia disponible.");
-        } else {
-            String respuesta = "El libro: " + libro + " tiene las siguientes copias disponibles: \n";
-            for (CopiaLibro copia : copias) {
-                respuesta += "Tipo: " + copia.getTipo() + " | Precio: " + copia.getPrecio() + "\n";
-            }
-            return respuesta;
-        }
-    }
+    // @Override
+    // protected void marcarComoInactivo(Evento evento) {
+    // // Suponiendo que Evento tiene un método setInactivo o similar
+    // evento.setInactivo();
+    // }
 
-    public void agregarQuitarCopia(Libro libroNuevo, CopiaLibro copia) {
-        try {
-            Libro libroViejo = copia.getLibro();
-            libroNuevo.agregarCopia(copia);
-            modificar(libroNuevo);
-            if (!libroNuevo.equals(libroViejo)) {
-                libroViejo.quitarCopia(copia);
-                modificar(libroViejo);
-            }
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
-    }
+    // public String verificarCopias(Libro libro) {
+    // List<CopiaLibro> copias = new ArrayList<>(libro.getCopias());
 
-    public void agregarAutor(Libro libro, Autor autor) {
-        try {
-            libro.agregarAutor(autor);
-            modificar(libro);
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
-    }
+    // if (copias.isEmpty()) {
+    // throw new IllegalArgumentException("El libro seleccionado no tiene ninguna
+    // copia disponible.");
+    // } else {
+    // String respuesta = "El libro: " + libro + " tiene las siguientes copias
+    // disponibles: \n";
+    // for (CopiaLibro copia : copias) {
+    // respuesta += "Tipo: " + copia.getTipo() + " | Precio: " + copia.getPrecio() +
+    // "\n";
+    // }
+    // return respuesta;
+    // }
+    // }
 
-    private void agregarLibroAEntidades(Libro libro, Set<Autor> autoresNuevos, Categoria categoria,
-            Editorial editorial,
-            Idioma idioma) {
-        Set<Autor> autoresViejos = libro.getAutores();
-        for (Autor autor : autoresNuevos) {
-            servicioAutor.agregarLibro(autor, libro);
-        }
-        if (!autoresNuevos.equals(autoresViejos)) {
-            for (Autor autor : autoresViejos) {
-                if (!autoresNuevos.contains(autor)) {
-                    servicioAutor.quitarLibro(autor, libro);
-                }
-            }
-        }
-        servicioCategoria.agregarQuitarLibro(categoria, libro);
-        servicioEditorial.agregarQuitarLibro(editorial, libro);
-        servicioIdioma.agregarQuitarLibro(idioma, libro);
-    }
+    // public void agregarQuitarCopia(Libro libroNuevo, CopiaLibro copia) {
+    // try {
+    // Libro libroViejo = copia.getLibro();
+    // libroNuevo.agregarCopia(copia);
+    // modificar(libroNuevo);
+    // if (!libroNuevo.equals(libroViejo)) {
+    // libroViejo.quitarCopia(copia);
+    // modificar(libroViejo);
+    // }
+    // } catch (IllegalArgumentException e) {
+    // throw e;
+    // }
+    // }
+
+    // public void agregarAutor(Libro libro, Autor autor) {
+    // try {
+    // libro.agregarAutor(autor);
+    // modificar(libro);
+    // } catch (IllegalArgumentException e) {
+    // throw e;
+    // }
+    // }
+
+    // private void agregarLibroAEntidades(Libro libro, Set<Autor> autoresNuevos,
+    // Categoria categoria,
+    // Editorial editorial,
+    // Idioma idioma) {
+    // Set<Autor> autoresViejos = libro.getAutores();
+    // for (Autor autor : autoresNuevos) {
+    // servicioAutor.agregarLibro(autor, libro);
+    // }
+    // if (!autoresNuevos.equals(autoresViejos)) {
+    // for (Autor autor : autoresViejos) {
+    // if (!autoresNuevos.contains(autor)) {
+    // servicioAutor.quitarLibro(autor, libro);
+    // }
+    // }
+    // }
+    // servicioCategoria.agregarQuitarLibro(categoria, libro);
+    // servicioEditorial.agregarQuitarLibro(editorial, libro);
+    // servicioIdioma.agregarQuitarLibro(idioma, libro);
+    // }
 }

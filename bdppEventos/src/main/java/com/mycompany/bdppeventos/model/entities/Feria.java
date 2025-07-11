@@ -1,6 +1,10 @@
 package com.mycompany.bdppeventos.model.entities;
 
-import com.mycompany.bdppeventos.model.enums.TipoCobertura;
+import java.time.LocalDate;
+
+import com.mycompany.bdppeventos.model.enums.EstadoEvento;
+import com.mycompany.bdppeventos.model.enums.TipoEvento;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -26,6 +30,17 @@ public class Feria extends Evento {
     public Feria(int cantidadStands, boolean esAireLibre) {
         super(); // Me comunico con el Contructor sin parametros de la clase padre para poder
                  // crear la instancia
+        this.cantidadStands = cantidadStands;
+        this.esAireLibre = esAireLibre;
+    }
+
+    // Constructor completo que necesitas agregar
+    public Feria(String nombre, LocalDate fechaInicio, int duracionEstimada, boolean tieneCupo,
+            EstadoEvento estado, boolean requiereInscripcion, int cupoMaximo,
+            boolean esAbierto, int cantidadStands, boolean esAireLibre) {
+        // Ajustar según el constructor disponible en Evento
+        super(nombre, fechaInicio, duracionEstimada, estado, TipoEvento.FERIA, requiereInscripcion, cupoMaximo,
+                esAbierto);
         this.cantidadStands = cantidadStands;
         this.esAireLibre = esAireLibre;
     }

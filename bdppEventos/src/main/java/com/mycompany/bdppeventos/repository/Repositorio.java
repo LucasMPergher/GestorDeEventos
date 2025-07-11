@@ -10,7 +10,11 @@ import jakarta.persistence.criteria.Root;
 
 /**
  * Implementación Genérica de un repositorio usando un EntityManager.
- * 
+ * Repositorio es el encargado de realizar las operaciones de persistencia
+ * de las entidades en la base de datos.
+ * Esta clase implementa el patron Repository utilizando JPA para
+ * abstraer las operaciones CRUD basicas y proporcionar metodos
+ * genericos para cualquier entidad.
  */
 
 public class Repositorio {
@@ -29,13 +33,13 @@ public class Repositorio {
 
     // Confirma (commits) la transacción en curso
     public void confirmarTransaccion() {
-        em.getTransaction().commit();
+        em.getTransaction().commit(); // ejecuta el commit de la transacción
     }
 
     // Descartar (rollback) la transacción en curso en caso de error o necesidad de
     // deshacer cambios
     public void descartarTransaccion() {
-        em.getTransaction().rollback();
+        em.getTransaction().rollback(); // ejecuta el rollback de la transacción
     }
 
     // Inserta un objeto en la base de datos
