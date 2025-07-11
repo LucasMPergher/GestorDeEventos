@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.PanelEventosController"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <Label text="Gestión Integral de Eventos Culturales" styleClass="main-title" alignment="CENTER" />
+    </top>
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" styleClass="glass-pane">
+            <tabs>
+                <!-- Eventos -->
+                <Tab text="Eventos">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <TextField fx:id="buscarEventoField" promptText="Buscar eventos..." styleClass="futuristic-search" />
+                            <ComboBox fx:id="tipoEventoFiltro" promptText="Filtrar por tipo" styleClass="combo-box" />
+                            <ComboBox fx:id="estadoEventoFiltro" promptText="Filtrar por estado" styleClass="combo-box" />
+                            <Button text="Nuevo Evento" styleClass="button" onAction="#nuevoEvento" />
+                        </HBox>
+                        <TableView fx:id="tablaEventos" styleClass="table-view" prefWidth="1000" prefHeight="350">
+                            <columns>
+                                <TableColumn text="Nombre" prefWidth="200" />
+                                <TableColumn text="Tipo" prefWidth="100" />
+                                <TableColumn text="Fecha Inicio" prefWidth="120" />
+                                <TableColumn text="Duración" prefWidth="80" />
+                                <TableColumn text="Estado" prefWidth="100" />
+                                <TableColumn text="Inscripciones" prefWidth="100" />
+                                <TableColumn text="Acciones" prefWidth="150" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Personas -->
+                <Tab text="Personas">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <GridPane hgap="10" vgap="10">
+                            <Label text="DNI:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                            <TextField fx:id="dniField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                            <Label text="Nombre Completo:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                            <TextField fx:id="nombreField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                            <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                            <TextField fx:id="telefonoField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                            <Label text="Correo Electrónico:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                            <TextField fx:id="correoField" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                            <Label text="Tipo:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                            <ComboBox fx:id="tipoCombo" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                        </GridPane>
+                        <HBox spacing="10" alignment="CENTER">
+                            <Button text="Guardar" styleClass="button" onAction="#guardarPersona" />
+                            <Button text="Cancelar" styleClass="button" onAction="#cancelarPersona" />
+                        </HBox>
+                        <TableView fx:id="tablaPersonas" styleClass="table-view" prefWidth="1000" prefHeight="300">
+                            <columns>
+                                <TableColumn text="DNI" prefWidth="120" />
+                                <TableColumn text="Nombre" prefWidth="200" />
+                                <TableColumn text="Teléfono" prefWidth="120" />
+                                <TableColumn text="Correo" prefWidth="200" />
+                                <TableColumn text="Tipo" prefWidth="100" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Inscripciones -->
+                <Tab text="Inscripciones">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <GridPane hgap="10" vgap="10">
+                            <Label text="Fecha Inscripción:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                            <DatePicker fx:id="fechaInscripcionPicker" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                            <Label text="Asistió:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                            <CheckBox fx:id="asistioCheck" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                        </GridPane>
+                        <HBox spacing="10" alignment="CENTER">
+                            <Button text="Guardar" styleClass="button" onAction="#guardarInscripcion" />
+                            <Button text="Cancelar" styleClass="button" onAction="#cancelarInscripcion" />
+                        </HBox>
+                        <TableView fx:id="tablaInscripciones" styleClass="table-view" prefWidth="1000" prefHeight="300">
+                            <columns>
+                                <TableColumn text="Persona" prefWidth="200" />
+                                <TableColumn text="Evento" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Asistió" prefWidth="80" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Ferias -->
+                <Tab text="Ferias">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <GridPane hgap="10" vgap="10">
+                            <Label text="Cantidad de Stands:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                            <TextField fx:id="cantidadStandsField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                            <Label text="Es al Aire Libre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                            <CheckBox fx:id="esAireLibreCheck" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                        </GridPane>
+                        <HBox spacing="10" alignment="CENTER">
+                            <Button text="Guardar" styleClass="button" onAction="#guardarFeria" />
+                            <Button text="Cancelar" styleClass="button" onAction="#cancelarFeria" />
+                        </HBox>
+                        <TableView fx:id="tablaFerias" styleClass="table-view" prefWidth="1000" prefHeight="300">
+                            <columns>
+                                <TableColumn text="Nombre Feria" prefWidth="200" />
+                                <TableColumn text="Cantidad Stands" prefWidth="120" />
+                                <TableColumn text="Aire Libre" prefWidth="100" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Talleres -->
+                <Tab text="Talleres">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <TableView fx:id="tablaTalleres" styleClass="table-view" prefWidth="1000" prefHeight="400">
+                            <columns>
+                                <TableColumn text="Nombre Taller" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Cupos" prefWidth="100" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Exposiciones -->
+                <Tab text="Exposiciones">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <TableView fx:id="tablaExposiciones" styleClass="table-view" prefWidth="1000" prefHeight="400">
+                            <columns>
+                                <TableColumn text="Nombre Exposición" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Artistas" prefWidth="200" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Ciclo de Cine -->
+                <Tab text="Ciclo de Cine">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <TableView fx:id="tablaCicloCine" styleClass="table-view" prefWidth="1000" prefHeight="400">
+                            <columns>
+                                <TableColumn text="Nombre Ciclo" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Películas" prefWidth="200" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Conciertos -->
+                <Tab text="Conciertos">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <TableView fx:id="tablaConciertos" styleClass="table-view" prefWidth="1000" prefHeight="400">
+                            <columns>
+                                <TableColumn text="Nombre Concierto" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="120" />
+                                <TableColumn text="Artistas" prefWidth="200" />
+                                <TableColumn text="Acciones" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <!-- Reporte de Ingresos -->
+                <Tab text="Reporte de Ingresos">
+                    <VBox spacing="15" alignment="TOP_CENTER">
+                        <TableView fx:id="tablaIngresos" styleClass="table-view" prefWidth="1000" prefHeight="400">
+                            <columns>
+                                <TableColumn text="Evento" prefWidth="200" />
+                                <TableColumn text="Fecha" prefWidth="150" />
+                                <TableColumn text="Ingresos" prefWidth="150" />
+                                <TableColumn text="Gastos" prefWidth="100" />
+                                <TableColumn text="Balance" prefWidth="100" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

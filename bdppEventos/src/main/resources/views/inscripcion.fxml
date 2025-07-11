@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InscripcionController" spacing="20" alignment="TOP_CENTER" stylesheets="@/css/application.css" prefWidth="900" prefHeight="600">
+    <Label text="Gestión de Inscripciones" styleClass="section-title" />
+    <GridPane hgap="10" vgap="10">
+        <Label text="Fecha Inscripción:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <DatePicker fx:id="fechaInscripcionPicker" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        <Label text="Asistió:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <CheckBox fx:id="asistioCheck" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    </GridPane>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Guardar" styleClass="button" onAction="#guardarInscripcion" />
+        <Button text="Cancelar" styleClass="button" onAction="#cancelar" />
+    </HBox>
+    <TableView styleClass="table-view" prefWidth="850" prefHeight="300">
+        <columns>
+            <TableColumn text="Persona" prefWidth="200" />
+            <TableColumn text="Evento" prefWidth="200" />
+            <TableColumn text="Fecha" prefWidth="120" />
+            <TableColumn text="Asistió" prefWidth="80" />
+            <TableColumn text="Acciones" prefWidth="100" />
+        </columns>
+        <!-- Puedes agregar items de ejemplo aquí -->
+    </TableView>
+</VBox>

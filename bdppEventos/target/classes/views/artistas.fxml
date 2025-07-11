@@ -1,0 +1,15 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ArtistasController" spacing="20" alignment="CENTER" styleClass="glass-pane">
+    <Label text="Gestión de Artistas" styleClass="futuristic-title" />
+    <TableView fx:id="tablaArtistas" styleClass="futuristic-table" prefWidth="700">
+        <columns>
+            <TableColumn text="Nombre" prefWidth="200" />
+            <TableColumn text="Especialidad" prefWidth="200" />
+            <TableColumn text="Contacto" prefWidth="200" />
+        </columns>
+    </TableView>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Nuevo Artista" styleClass="neon-button" />
+        <Button text="Editar" styleClass="neon-button" />
+        <Button text="Eliminar" styleClass="neon-button" />
+    </HBox>
+</VBox>

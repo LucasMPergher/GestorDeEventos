@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FeriaController" spacing="20" alignment="TOP_CENTER" stylesheets="@/css/application.css" prefWidth="900" prefHeight="600">
+    <Label text="Gestión de Ferias" styleClass="section-title" />
+    <GridPane hgap="10" vgap="10">
+        <Label text="Cantidad de Stands:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="cantidadStandsField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        <Label text="Es al Aire Libre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <CheckBox fx:id="esAireLibreCheck" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    </GridPane>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Guardar" styleClass="button" onAction="#guardarFeria" />
+        <Button text="Cancelar" styleClass="button" onAction="#cancelar" />
+    </HBox>
+    <TableView styleClass="table-view" prefWidth="850" prefHeight="300">
+        <columns>
+            <TableColumn text="Nombre Feria" prefWidth="200" />
+            <TableColumn text="Cantidad Stands" prefWidth="120" />
+            <TableColumn text="Aire Libre" prefWidth="100" />
+            <TableColumn text="Fecha" prefWidth="120" />
+            <TableColumn text="Acciones" prefWidth="100" />
+        </columns>
+        <!-- Puedes agregar items de ejemplo aquí -->
+    </TableView>
+</VBox>

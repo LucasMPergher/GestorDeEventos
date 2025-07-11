@@ -1,0 +1,483 @@
+/* ========== PALETA DE COLORES AZULES MODERNA ========== */
+.root {
+    -color-primary: #4A6FA5; /* Azul medio */
+    -color-secondary: #6B8CBE; /* Azul suave */
+    -color-accent: #3A5A78; /* Azul oscuro */
+    -color-light: #F0F4F8; /* Azul claro */
+    -color-dark: #1E2B3A; /* Azul noche */
+    -color-success: #4CAF82; /* Verde azulado */
+    -color-warning: #FFC857; /* Amarillo contrastante */
+    -color-danger: #D64550; /* Rojo azulado */
+    
+    -fx-font-family: 'Poppins', 'Segoe UI', sans-serif;
+    -fx-background-color: -color-light;
+}
+
+/* ========== TÍTULO PRINCIPAL CON EFECTO DEGRADADO ========== */
+.main-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+    -fx-text-fill: linear-gradient(to right, -color-primary, -color-accent);
+    -fx-padding: 25px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.2), 10, 0, 0, 5);
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: linear-gradient(to right, -color-primary, -color-accent);
+}
+
+/* ========== PANEL DE PESTAÑAS REVOLUCIONARIO ========== */
+.glass-pane {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(74, 111, 165, 0.3);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.1), 20, 0, 0, 10);
+    -fx-padding: 20px;
+}
+
+.glass-pane .tab-header-area {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 10 0;
+}
+
+.glass-pane .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-effect: null;
+}
+
+.glass-pane .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-padding: 10 25;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-dark;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.glass-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-text-fill: -color-primary;
+    -fx-effect: dropshadow(three-pass-box, rgba(74,111,165,0.2), 5, 0, 0, 3);
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: -color-primary;
+}
+
+.glass-pane .tab:hover {
+    -fx-text-fill: -color-secondary;
+}
+
+/* ========== BOTONES CON EFECTO 3D Y TRANSFORMACIONES ========== */
+.button {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 14px;
+    -fx-background-radius: 50;
+    -fx-padding: 12 25;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(74,111,165,0.5), 10, 0, 0, 3);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: derive(-color-primary, -10%);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(74,111,165,0.7), 15, 0, 0, 5);
+}
+
+.button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, rgba(74,111,165,0.3), 5, 0, 0, 1);
+}
+
+.button.secondary {
+    -fx-background-color: -color-secondary;
+    -fx-effect: dropshadow(gaussian, rgba(107,140,190,0.5), 10, 0, 0, 3);
+}
+
+.button.secondary:hover {
+    -fx-background-color: derive(-color-secondary, -10%);
+    -fx-effect: dropshadow(gaussian, rgba(107,140,190,0.7), 15, 0, 0, 5);
+}
+
+/* ========== TABLAS CON DISEÑO ORGÁNICO ========== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: rgba(30,43,58,0.1);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.05), 10, 0, 0, 5);
+    -fx-padding: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, white, -color-light);
+    -fx-text-fill: -color-dark;
+    -fx-font-weight: 700;
+    -fx-border-color: rgba(30,43,58,0.05);
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-radius: 15 15 0 0;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 5;
+    -fx-border-color: transparent;
+    -fx-text-fill: -color-dark;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(240,244,248,0.5);
+}
+
+.table-row-cell:even {
+    -fx-background-color: white;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(74,111,165,0.1);
+}
+
+/* ========== CAMPOS DE TEXTO Y COMBO BOXES ========== */
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color: rgba(30,43,58,0.2);
+    -fx-border-width: 1px;
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.05), 5, 0, 0, 3);
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(74,111,165,0.2), 10, 0, 0, 3);
+}
+
+/* ========== BARRA DE BÚSQUEDA FUTURISTA ========== */
+.futuristic-search {
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color: rgba(30,43,58,0.2);
+    -fx-border-width: 1px;
+    -fx-padding: 10 15 10 40;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.05), 5, 0, 0, 3);
+    -fx-background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%231E2B3A" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 15px center;
+}
+
+.futuristic-search:focused {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(74,111,165,0.2), 10, 0, 0, 3);
+}
+
+/* ========== CHECKBOX PERSONALIZADO ========== */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: rgba(30,43,58,0.2);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,43,58,0.05), 5, 0, 0, 3);
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -color-primary;
+}
+
+.check-box:selected .box {
+    -fx-border-color: -color-primary;
+}
+
+/* ========== EFECTOS ESPECIALES ========== */
+.highlight-pulse {
+    -fx-effect: innershadow(gaussian, -color-primary, 10, 0.5, 0, 0);
+    -fx-animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { -fx-effect: innershadow(gaussian, -color-primary, 10, 0.3, 0, 0); }
+    50% { -fx-effect: innershadow(gaussian, -color-primary, 10, 0.8, 0, 0); }
+    100% { -fx-effect: innershadow(gaussian, -color-primary, 10, 0.3, 0, 0); }
+}
+
+/* ========== DISEÑO RESPONSIVO ========== */
+@media (max-width: 1024px) {
+    .main-title {
+        -fx-font-size: 28px;
+        -fx-padding: 20px;
+    }
+    
+    .glass-pane {
+        -fx-padding: 15px;
+        -fx-background-radius: 15;
+    }
+    
+    .button {
+        -fx-padding: 10 20;
+        -fx-font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        -fx-font-size: 24px;
+        -fx-padding: 15px;
+    }
+    
+    .glass-pane .tab {
+        -fx-padding: 8 15;
+        -fx-font-size: 12px;
+    }
+    
+    .text-field, .combo-box, .date-picker, .futuristic-search {
+        -fx-padding: 8 12;
+        -fx-font-size: 13px;
+    }
+}
+
+.glass-card {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+    -fx-padding: 20px;
+    -fx-background-insets: 0;
+    -fx-background-color: linear-gradient(to bottom right, 
+        rgba(255,255,255,0.25), 
+        rgba(255,255,255,0.15));
+}
+
+.glass-card:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(three-pass-box, rgba(74,111,165,0.3), 25, 0, 0, 10);
+}
+
+.fab-button {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-min-width: 56px;
+    -fx-min-height: 56px;
+    -fx-max-width: 56px;
+    -fx-max-height: 56px;
+    -fx-background-radius: 28;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 3);
+    -fx-cursor: hand;
+}
+
+.fab-button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 12, 0, 0, 6);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.fab-button:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.progress-bar {
+    -fx-accent: -color-primary;
+    -fx-background-color: -color-light;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(30,43,58,0.1);
+    -fx-padding: 2px;
+}
+
+.progress-bar .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.progress-bar .bar {
+    -fx-background-color: -color-primary;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-padding: 2px;
+    -fx-effect: innershadow(three-pass-box, rgba(255,255,255,0.3), 5, 0, 0, 2);
+}
+
+.progress-bar.indeterminate .bar {
+    -fx-background-color: linear-gradient(to right, -color-primary, -color-secondary);
+    -fx-background-radius: 10;
+}
+
+.spinner {
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+    -fx-fill: transparent;
+    -fx-stroke: -color-primary;
+    -fx-stroke-width: 3;
+    -fx-stroke-line-cap: round;
+    -fx-animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+    0% { -fx-rotate: 0; }
+    100% { -fx-rotate: 360; }
+}
+
+.tooltip {
+    -fx-background-color: rgba(30,43,58,0.9);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.tooltip > .graphic {
+    -fx-padding: 0 5 0 0;
+}
+
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: rgba(30,43,58,0.1);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-padding: 8 0;
+}
+
+.menu-item {
+    -fx-padding: 8 20;
+    -fx-background-color: transparent;
+}
+
+.menu-item:hover {
+    -fx-background-color: rgba(74,111,165,0.1);
+}
+
+.menu-item:focused {
+    -fx-background-color: rgba(74,111,165,0.2);
+    -fx-background-radius: 4;
+}
+
+.vertical-tab-pane {
+    -fx-tab-min-width: 120px;
+    -fx-tab-max-width: 120px;
+}
+
+.vertical-tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 0 3px;
+    -fx-border-color: transparent;
+    -fx-padding: 15 10;
+}
+
+.vertical-tab-pane .tab:selected {
+    -fx-background-color: rgba(74,111,165,0.1);
+    -fx-border-color: -color-primary;
+    -fx-text-fill: -color-primary;
+}
+
+.ripple-effect {
+    -fx-ripple-color: rgba(255,255,255,0.4);
+    -fx-ripple-radius: 20;
+    -fx-background-color: -color-primary;
+}
+
+.ripple-effect:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+* {
+    -fx-transition: all 0.3s ease;
+}
+
+*:hover {
+    -fx-transition: all 0.2s ease;
+}
+
+.text-shadow {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.5, 1, 1);
+}
+
+.text-glow {
+    -fx-effect: dropshadow(gaussian, -color-primary, 10, 0.5, 0, 0);
+}
+
+.neon-effect {
+    -fx-effect: dropshadow(gaussian, -color-primary, 20, 0.5, 0, 0);
+    -fx-text-fill: white;
+    -fx-background-color: -color-primary;
+    -fx-border-color: rgba(255,255,255,0.8);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4;
+}
+
+.neon-effect:hover {
+    -fx-effect: dropshadow(gaussian, -color-primary, 30, 0.7, 0, 0);
+}
+
+/* ========== NUEVOS ESTILOS PARA NAVBAR, HEADER Y BOTONES CON ICONOS ========== */
+.header-bar {
+    -fx-background-color: #f7f9fa;
+    -fx-padding: 18 32 18 32;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, #bfc9d1, 2, 0.2, 0, 1);
+}
+
+.header-municipio {
+    -fx-font-size: 16px;
+    -fx-text-fill: #2980b9;
+    -fx-font-weight: bold;
+}
+
+.navbar {
+    -fx-background-color: #e1e8ed;
+    -fx-padding: 24 0 24 0;
+    -fx-min-width: 170px;
+    -fx-border-width: 0 2 0 0;
+    -fx-border-color: #bfc9d1;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 10 0 10 0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-spacing: 10;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #d6eaf8;
+}
+
+.nav-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 0 8;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}

@@ -1,0 +1,12 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CalendarioController" spacing="20" alignment="CENTER" styleClass="glass-pane">
+    <Label text="Calendario de Eventos" styleClass="futuristic-title" />
+    <DatePicker fx:id="datePicker" styleClass="futuristic-field" />
+    <TableView fx:id="tablaEventos" styleClass="futuristic-table" prefWidth="700">
+        <columns>
+            <TableColumn text="Evento" prefWidth="200" />
+            <TableColumn text="Fecha" prefWidth="150" />
+            <TableColumn text="Tipo" prefWidth="150" />
+            <TableColumn text="Estado" prefWidth="100" />
+        </columns>
+    </TableView>
+</VBox>

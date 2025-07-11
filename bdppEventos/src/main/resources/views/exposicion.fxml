@@ -1,0 +1,12 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ExposicionController" alignment="TOP_CENTER" spacing="20" stylesheets="@/css/application.css" prefWidth="900" prefHeight="600">
+    <Label text="Gestión de Exposiciones" styleClass="section-title" />
+    <TableView styleClass="table-view" prefWidth="850" prefHeight="400">
+        <columns>
+            <TableColumn text="Nombre Exposición" prefWidth="200" />
+            <TableColumn text="Fecha" prefWidth="120" />
+            <TableColumn text="Artistas" prefWidth="200" />
+            <TableColumn text="Acciones" prefWidth="100" />
+        </columns>
+        <!-- Puedes agregar items de ejemplo aquí -->
+    </TableView>
+</VBox>

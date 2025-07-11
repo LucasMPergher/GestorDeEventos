@@ -1,0 +1,12 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReporteAsistenciaController" spacing="20" alignment="CENTER" styleClass="glass-pane">
+    <Label text="Reporte de Asistencia" styleClass="futuristic-title" />
+    <TableView fx:id="tablaAsistencia" styleClass="futuristic-table" prefWidth="700">
+        <columns>
+            <TableColumn text="Evento" prefWidth="200" />
+            <TableColumn text="Fecha" prefWidth="150" />
+            <TableColumn text="Asistentes" prefWidth="150" />
+            <TableColumn text="Capacidad" prefWidth="100" />
+            <TableColumn text="Porcentaje" prefWidth="100" />
+        </columns>
+    </TableView>
+</VBox>

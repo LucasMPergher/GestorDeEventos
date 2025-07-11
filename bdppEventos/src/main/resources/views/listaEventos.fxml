@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="TOP_CENTER" styleClass="glass-pane" stylesheets="@/css/application.css" prefWidth="900" prefHeight="600">
+    <Label text="Gestión de Eventos" styleClass="section-title" />
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <TextField promptText="Buscar eventos..." styleClass="futuristic-search" />
+        <ComboBox promptText="Filtrar por tipo" styleClass="combo-box">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String>Todos</String>
+                    <String>Feria</String>
+                    <String>Exposición</String>
+                    <String>Taller</String>
+                    <String>Ciclo de Cine</String>
+                    <String>Concierto</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <ComboBox promptText="Filtrar por estado" styleClass="combo-box">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String>Todos</String>
+                    <String>Planificado</String>
+                    <String>En curso</String>
+                    <String>Finalizado</String>
+                    <String>Cancelado</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button text="Nuevo Evento" styleClass="button" onAction="#nuevoEvento" />
+    </HBox>
+    <TableView styleClass="table-view" prefWidth="850" prefHeight="400">
+        <columns>
+            <TableColumn text="Nombre" prefWidth="200" />
+            <TableColumn text="Tipo" prefWidth="100" />
+            <TableColumn text="Fecha Inicio" prefWidth="120" />
+            <TableColumn text="Duración" prefWidth="80" />
+            <TableColumn text="Estado" prefWidth="100" />
+            <TableColumn text="Inscripciones" prefWidth="100" />
+            <TableColumn text="Acciones" prefWidth="150" />
+        </columns>
+        <!-- Puedes agregar items de ejemplo aquí -->
+    </TableView>
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Mostrando 3 de 15 eventos" style="-fx-text-fill: #7f8c8d;" />
+        <Button text="< Anterior" styleClass="button" />
+        <Button text="Siguiente >" styleClass="button" />
+    </HBox>
+</VBox>

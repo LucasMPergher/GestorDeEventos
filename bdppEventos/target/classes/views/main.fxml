@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.MainController"
+            prefWidth="1000" prefHeight="700">
+    <top>
+        <MenuBar styleClass="menu-bar">
+            <menus>
+                <Menu text="Eventos" styleClass="menu">
+                    <items>
+                        <MenuItem text="Dashboard" onAction="#mostrarDashboard" styleClass="menu-item" />
+                        <MenuItem text="Todos los Eventos" onAction="#mostrarEventos" styleClass="menu-item" />
+                        <Menu text="Tipos de Evento" styleClass="menu">
+                            <items>
+                                <MenuItem text="Feria" onAction="#mostrarFeria" styleClass="menu-item" />
+                                <MenuItem text="Exposición" onAction="#mostrarExposicion" styleClass="menu-item" />
+                                <MenuItem text="Taller" onAction="#mostrarTaller" styleClass="menu-item" />
+                                <MenuItem text="Ciclo de Cine" onAction="#mostrarCicloCine" styleClass="menu-item" />
+                                <MenuItem text="Concierto" onAction="#mostrarConcierto" styleClass="menu-item" />
+                            </items>
+                        </Menu>
+                        <MenuItem text="Calendario" onAction="#mostrarCalendario" styleClass="menu-item" />
+                    </items>
+                </Menu>
+                <Menu text="Personas" styleClass="menu">
+                    <items>
+                        <MenuItem text="Gestión de Personas" onAction="#mostrarPersonas" styleClass="menu-item" />
+                        <MenuItem text="Inscripciones" onAction="#mostrarInscripciones" styleClass="menu-item" />
+                        <MenuItem text="Artistas" onAction="#mostrarArtistas" styleClass="menu-item" />
+                    </items>
+                </Menu>
+                <Menu text="Reportes" styleClass="menu">
+                    <items>
+                        <MenuItem text="Asistencia" onAction="#mostrarReporteAsistencia" styleClass="menu-item" />
+                        <MenuItem text="Ingresos" onAction="#mostrarReporteIngresos" styleClass="menu-item" />
+                    </items>
+                </Menu>
+                <Menu text="Configuración" styleClass="menu">
+                    <items>
+                        <MenuItem text="Ajustes" onAction="#mostrarAjustes" styleClass="menu-item" />
+                        <MenuItem text="Usuarios" onAction="#mostrarUsuarios" styleClass="menu-item" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: transparent;">
+            <VBox alignment="CENTER" spacing="20" styleClass="glass-pane" maxWidth="900" maxHeight="600">
+                <ImageView fitWidth="120" fitHeight="120">
+                    <Image url="@../images/logo.png" />
+                </ImageView>
+                <Label text="Sistema de Gestión de Eventos Culturales" styleClass="main-title" />
+                <Label text="Bienvenido al panel de gestión municipal" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16px;" />
+                <HBox spacing="20" alignment="CENTER">
+                    <Button text="Crear Evento" styleClass="button" onAction="#mostrarEventos" />
+                    <Button text="Gestionar Personas" styleClass="button" onAction="#mostrarPersonas" />
+                    <Button text="Ver Reportes" styleClass="button" onAction="#mostrarReporteAsistencia" />
+                </HBox>
+                <GridPane hgap="20" vgap="15" alignment="CENTER">
+                    <Label text="Eventos próximos:" style="-fx-text-fill: #2980b9; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" />
+                    <VBox styleClass="event-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Feria Municipal" style="-fx-font-weight: bold;" />
+                        <Label text="15 Oct 2023" style="-fx-text-fill: #7f8c8d;" />
+                        <Label text="25 stands confirmados" style="-fx-text-fill: #7f8c8d;" />
+                    </VBox>
+                    <VBox styleClass="event-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Taller de Arte" style="-fx-font-weight: bold;" />
+                        <Label text="20 Oct 2023" style="-fx-text-fill: #7f8c8d;" />
+                        <Label text="15/20 cupos disponibles" style="-fx-text-fill: #7f8c8d;" />
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </StackPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #2c3e50; -fx-padding: 10;">
+            <Label text="© 2023 Municipio de Ejemplo - Sistema de Gestión de Eventos" style="-fx-text-fill: #ecf0f1;" />
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,12 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReporteIngresosController" spacing="20" alignment="CENTER" styleClass="glass-pane" stylesheets="@/css/application.css">
+    <Label text="Reporte de Ingresos" styleClass="section-title" />
+    <TableView fx:id="tablaIngresos" styleClass="table-view" prefWidth="700">
+        <columns>
+            <TableColumn text="Evento" prefWidth="200" />
+            <TableColumn text="Fecha" prefWidth="150" />
+            <TableColumn text="Ingresos" prefWidth="150" />
+            <TableColumn text="Gastos" prefWidth="100" />
+            <TableColumn text="Balance" prefWidth="100" />
+        </columns>
+    </TableView>
+</VBox>

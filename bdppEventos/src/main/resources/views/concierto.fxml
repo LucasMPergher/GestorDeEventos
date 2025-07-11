@@ -1,0 +1,3 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConciertoController" alignment="CENTER" spacing="20">
+    <Label text="Gestión de Conciertos" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+</VBox>

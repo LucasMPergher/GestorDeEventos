@@ -1,0 +1,24 @@
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjustesController" spacing="20" alignment="CENTER" styleClass="glass-pane">
+    <Label text="Ajustes del Sistema" styleClass="futuristic-title" />
+    <GridPane hgap="10" vgap="10">
+        <Label text="Idioma:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <ComboBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="futuristic-combo">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String>Español</String>
+                    <String>Inglés</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label text="Tema:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="futuristic-combo">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String>Claro</String>
+                    <String>Oscuro</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </GridPane>
+    <Button text="Guardar Cambios" styleClass="neon-button" />
+</VBox>
