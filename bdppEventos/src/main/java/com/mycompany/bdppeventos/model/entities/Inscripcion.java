@@ -1,7 +1,6 @@
 package com.mycompany.bdppeventos.model.entities;
 
 import java.time.LocalDate;
-
 import com.mycompany.bdppeventos.model.interfaces.Activable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,14 +20,14 @@ public class Inscripcion implements Activable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idInscripcion;
 
+    @Column(name = "asistio", nullable = false)
+    private boolean asistio;
+
     @Column(name = "activo", nullable = false)
     private Boolean activo = true;
 
     @Column(name = "fecha_inscripcion", nullable = false)
     private LocalDate fechaInscripcion;
-
-    @Column(name = "asistio", nullable = false)
-    private boolean asistio;
 
     // Relaciones
 

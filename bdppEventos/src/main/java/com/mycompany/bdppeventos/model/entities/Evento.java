@@ -112,6 +112,38 @@ public abstract class Evento implements Activable {
         this.estado = estado;
     }
 
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+
+    public boolean isRequiereInscripcion() {
+        return requiereInscripcion;
+    }
+
+    public void setRequiereInscripcion(boolean requiereInscripcion) {
+        this.requiereInscripcion = requiereInscripcion;
+    }
+
+    public int getCupoMaximo() {
+        return cupoMaximo;
+    }
+
+    public void setCupoMaximo(int cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
+    }
+
+    public boolean isEsAbierto() {
+        return esAbierto;
+    }
+
+    public void setEsAbierto(boolean esAbierto) {
+        this.esAbierto = esAbierto;
+    }
+
     // Metodos interfaz Activable
 
 }

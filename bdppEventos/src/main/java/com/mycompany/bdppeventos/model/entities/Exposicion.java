@@ -1,5 +1,10 @@
 package com.mycompany.bdppeventos.model.entities;
 
+import java.time.LocalDate;
+
+import com.mycompany.bdppeventos.model.enums.EstadoEvento;
+import com.mycompany.bdppeventos.model.enums.TipoEvento;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -24,8 +29,10 @@ public class Exposicion extends Evento {
         super();
     }
 
-    public Exposicion(TipoDeArte tipoArte) {
-        super(); // Utilizo el contructor sin paámetros de la clase padre
+    public Exposicion(String nombre, LocalDate fechaInicio, int duracionEstimada, EstadoEvento estado,
+            TipoEvento tipoEvento, boolean requiereInscripcion, int cupoMaximo, boolean esAbierto,
+            TipoDeArte tipoArte) {
+        super(nombre, fechaInicio, duracionEstimada, estado, tipoEvento, requiereInscripcion, cupoMaximo, esAbierto);
         this.tipoArte = tipoArte;
     }
 

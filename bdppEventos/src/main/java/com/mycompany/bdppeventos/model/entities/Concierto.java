@@ -1,6 +1,9 @@
 package com.mycompany.bdppeventos.model.entities;
 
+import com.mycompany.bdppeventos.model.enums.EstadoEvento;
 import com.mycompany.bdppeventos.model.enums.TipoEntrada;
+import com.mycompany.bdppeventos.model.enums.TipoEvento;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,11 +29,26 @@ public class Concierto extends Evento {
         super();
     }
 
-    public Concierto(String nombre, LocalDate fechaInicio, int duracionEstimada, TipoEntrada tipoEntrada) {
-        super();
+    public Concierto(String nombre, LocalDate fechaInicio, int duracionEstimada,
+            EstadoEvento estado, boolean requiereInscripcion, int cupoMaximo,
+            boolean esAbierto, int cantidadStands, boolean esAireLibre, TipoEntrada tipoEntrada) {
+        super(nombre, fechaInicio, duracionEstimada, estado, TipoEvento.CONCIERTO, requiereInscripcion, cupoMaximo,
+                esAbierto);
         this.tipoEntrada = tipoEntrada;
     }
 
+    public TipoEntrada getTipoEntrada() {
+        return tipoEntrada;
+    }
+
+    public void setTipoEntrada(TipoEntrada tipoEntrada) {
+        if (tipoEntrada == null) {
+            throw new IllegalArgumentException("El tipo de entrada no puede ser nulo");
+        }
+        this.tipoEntrada = tipoEntrada;
+    }
+
+    // Implementación de métodos abstractos de Activable
     @Override
     public void activar() {
         // TODO Auto-generated method stub

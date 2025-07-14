@@ -27,15 +27,7 @@ public class Feria extends Evento {
                  // crear la instancia
     }
 
-    public Feria(int cantidadStands, boolean esAireLibre) {
-        super(); // Me comunico con el Contructor sin parametros de la clase padre para poder
-                 // crear la instancia
-        this.cantidadStands = cantidadStands;
-        this.esAireLibre = esAireLibre;
-    }
-
-    // Constructor completo que necesitas agregar
-    public Feria(String nombre, LocalDate fechaInicio, int duracionEstimada, boolean tieneCupo,
+    public Feria(String nombre, LocalDate fechaInicio, int duracionEstimada,
             EstadoEvento estado, boolean requiereInscripcion, int cupoMaximo,
             boolean esAbierto, int cantidadStands, boolean esAireLibre) {
         // Ajustar según el constructor disponible en Evento
@@ -54,6 +46,9 @@ public class Feria extends Evento {
     }
 
     public void setCantidadStands(int cantidadStands) {
+        if (cantidadStands < 0) {
+            throw new IllegalArgumentException("La cantidad de stands no puede ser negativa");
+        }
         this.cantidadStands = cantidadStands;
     }
 

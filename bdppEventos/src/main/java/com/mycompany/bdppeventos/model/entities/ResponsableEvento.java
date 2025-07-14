@@ -8,14 +8,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "responsables_evento")
-// La clase ResponsableEvento representa a un responsable de un evento
-// específico
-// que puede ser una persona o una entidad organizadora.
-// Esta clase implementa la interfaz Activable para manejar el estado
-// activo/inactivo.
-// No tiene atributos adicionales por el momento, pero puede ser extendida en el
-// futuro.
-// Se asume que la relación con Evento se maneja a través de la entidad Evento.
 public class ResponsableEvento implements Activable {
 
     @Id

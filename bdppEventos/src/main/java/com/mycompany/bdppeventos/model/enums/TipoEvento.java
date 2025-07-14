@@ -4,6 +4,6 @@ public enum TipoEvento {
     FERIA,
     TALLER,
     CONCIERTO,
-    EXPOCISION,
+    EXPOSICION,
     CICLOCINE
 }

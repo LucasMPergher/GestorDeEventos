@@ -29,20 +29,11 @@ public class CicloDeCine extends Evento {
         super();
     }
 
-    // Constructor completo para crear ciclos de cine existentes
-
-    public CicloDeCine(boolean charlasPosteriores) {
-        this.charlasPosteriores = charlasPosteriores;
-
-    }
-
     public CicloDeCine(String nombre, LocalDate fechaInicio, int duracionEstimada, EstadoEvento estado,
             boolean requiereInscripcion, int cupoMaximo, boolean esAbierto, boolean charlasPosteriores) {
         super(nombre, fechaInicio, duracionEstimada, estado, null, requiereInscripcion, cupoMaximo, esAbierto);
         this.charlasPosteriores = charlasPosteriores;
     }
-
-    // Constructor simplificado para crear ciclos de cine nuevos
 
     // Getters y Setters
     public boolean isCharlasPosteriores() {
